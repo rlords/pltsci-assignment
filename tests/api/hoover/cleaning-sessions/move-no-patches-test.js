@@ -1,4 +1,4 @@
-Feature('Hoover')
+Feature('hoover')
 
 Scenario('Move around randomly, no patches', async ({ I }) =>{
     const resp = await I.sendPostRequest('/cleaning-sessions', {
@@ -8,7 +8,6 @@ Scenario('Move around randomly, no patches', async ({ I }) =>{
         ],
         "instructions" : "SENWWSEENNSWWSENWSENW"
       });
-    console.log(resp)
     I.seeResponseCodeIsSuccessful()
     I.seeResponseContainsKeys(['coords', 'patches']);
     I.seeResponseContainsJson({
@@ -17,7 +16,7 @@ Scenario('Move around randomly, no patches', async ({ I }) =>{
       });
 })
 
-Scenario('Move around in circles SENW, no patches', async ({ I }) =>{
+Scenario('Move around in circles same path SENW, no patches', async ({ I }) =>{
     const resp = await I.sendPostRequest('/cleaning-sessions', {
         "roomSize" : [5, 5],
         "coords" : [2, 2],
@@ -25,7 +24,6 @@ Scenario('Move around in circles SENW, no patches', async ({ I }) =>{
         ],
         "instructions" : "SENWSENWSENWSENWSENWSENWSENWSENWSENWSENWSENW"
       });
-    console.log(resp)
     I.seeResponseCodeIsSuccessful()
     I.seeResponseContainsKeys(['coords', 'patches']);
     I.seeResponseContainsJson({
